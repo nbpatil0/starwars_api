@@ -2,6 +2,16 @@
 
 This project provides a caching engine for the Star Wars API ([SWAPI](https://swapi.dev/)) to enhance its features for high school students working on school projects.
 
+## Table of Contents
+
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Unit Tests](#unit-tests)
+- [Cron Job](#cron-job)
+- [Deployment](#deployment)
+
 ## Features
 
 - **REST API:** Designed to serve the needs of high school students with additional features like search, sort, etc.
@@ -12,19 +22,82 @@ This project provides a caching engine for the Star Wars API ([SWAPI](https://sw
 - **Unit Tests:** Includes unit tests for the SWAPI controller.
 - **Cron Job:** Sets up a cron job using APScheduler to periodically update the cached data.
 
+## Prerequisites
+
+- Python (>v3.9)
+- Pip (Python package installer)
+- SQLite (for local development)
+
 ## Installation
 
 1. Clone the repository.
+
+   ```bash
+   git clone https://github.com/nbpatil0/starwars_api.git
+   cd starwars_api
+   ```
+
 2. Create a virtual environment and activate it.
-3. Install the dependencies using `pip install -r requirements.txt`.
-4. Create a `.env` file based on the provided example.
+
+   ```bash
+   python -m venv venv
+   ```
+
+   - on Windows
+
+   ```bash
+   venv\Scripts\activate
+   ```
+
+   - on Mac/Linux
+
+   ```bash
+   source venv/bin/activate
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Create a `.env` file based on the provided example:
+
+   ```bash
+   FLASK_APP=app.main:app
+   FLASK_ENV=development
+   DATABASE_URI=sqlite:///cache.db
+   LOG_FILE=app.log
+   CRON_INTERVAL=3600
+   ```
+
+5. Source the `.env` file:
+
+   ```bash
+   source .env
+   ```
+
+6. Run the Flask application:
+   ```bash
+   flask run
+   ```
 
 ## Usage
 
-1. Run the Flask application: `flask run`.
-2. Access the API endpoints at `http://127.0.0.1:5000/swapi/<endpoint>`.
+### API Endpoints
 
-## Testing
+- `/swapi/<resource>`: Retrieve data for a specific Star Wars resource.
+- `/swapi/<resource>/<id>`: Retrieve details for a specific item within a resource.
+
+### Query Parameters
+
+- `page`: Page number for pagination (default: 1)
+- `items_per_page`: Number of items per page (default: 10)
+- `sort`: Attribute to sort by
+- `order`: Sorting order ('asc' or 'desc')
+- `search`: Search term
+
+## Unit Tests
 
 Run the unit tests using the following command:
 
