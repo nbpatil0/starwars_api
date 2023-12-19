@@ -8,4 +8,4 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # Run Gunicorn
-exec gunicorn -b :$PORT app:app
+exec gunicorn -b :$PORT --timeout 120 app:app
