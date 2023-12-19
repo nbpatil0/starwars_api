@@ -86,7 +86,7 @@ This project provides a caching engine for the Star Wars API ([SWAPI](https://sw
 
 ### API Endpoints
 
-- `/swapi/<resource>`: Retrieve data for a specific Star Wars resource.
+- `/swapi/<resource>`: Retrieve data for a specific Star Wars resource with query parameters defined below.
 - `/swapi/<resource>/<id>`: Retrieve details for a specific item within a resource.
 
 ### Query Parameters
@@ -116,3 +116,31 @@ python cron.py
 ## Deployment
 
 To deploy the application on a remote server, follow the deployment procedures for your chosen hosting platform.
+
+### Deployment on Render
+
+The Star Wars API Caching Server has been deployed on the Render platform. Please note the following considerations:
+
+- **Service Limitations:**
+
+  - Render services have a limitation where if the server doesn't receive any inbound hits for 15 minutes, the server shuts down to conserve resources.
+  - The server will start automatically upon receiving a new incoming request.
+
+- **Initialization Time:**
+
+  - As part of the deployment process, the server first updates the cache data from the Star Wars API.
+  - It may take a few minutes for the server to respond to the first API request, especially during the initial cache update.
+
+- **Example:**
+
+  - Retrieve data for a specific Star Wars resource with Search and Sort:
+
+  ```bash
+  https://starwars-api-7nk0.onrender.com/swapi/starships?items_per_page=20&search=transport&sort=cargo_capacity
+  ```
+
+  - Retrieve details for a specific item within a resource:
+
+  ```bash
+  https://starwars-api-7nk0.onrender.com/swapi/starships/2
+  ```
