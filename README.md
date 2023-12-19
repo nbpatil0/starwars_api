@@ -7,9 +7,11 @@ This project provides a caching engine for the Star Wars API ([SWAPI](https://sw
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Dockerfile](#dockerfile)
 - [Usage](#usage)
 - [Unit Tests](#unit-tests)
 - [Cron Job](#cron-job)
+- [Loggers](#loggers)
 - [Deployment](#deployment)
 
 ## Features
@@ -82,6 +84,32 @@ This project provides a caching engine for the Star Wars API ([SWAPI](https://sw
    flask run
    ```
 
+## Dockerfile
+
+A Dockerfile is included to containerize the application for easy deployment and isolation. Follow the instructions below to run the Dockerized application locally:
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/products/docker-desktop) installed on your machine.
+
+### Build and Run
+
+1. Open a terminal and navigate to the project directory.
+
+2. Build the Docker image:
+
+   ```bash
+   docker build -t starwars-api-server .
+   ```
+
+3. Run the Docker container:
+
+   ```bash
+   docker run -p 5000:5000 starwars-api-server
+   ```
+
+   The application will be accessible at http://127.0.0.1:5000/.
+
 ## Usage
 
 ### API Endpoints
@@ -112,6 +140,10 @@ The cron job is automatically set up to run every hour (adjustable in the .env f
 ```bash
 python cron.py
 ```
+
+## Loggers
+
+Logging has been implemented throughout the application to capture important events and errors. Loggers help in monitoring and troubleshooting the application.
 
 ## Deployment
 
